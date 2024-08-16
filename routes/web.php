@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::prefix('home')->controller(HomeController::class)->group(function(){
+Route::prefix('home')->middleware('auth')->controller(TaskController::class)->group(function(){
 
     Route::get('/', 'index')->name('tasks.index');
     Route::get('/tasks/create', 'create')->name('tasks.create');
